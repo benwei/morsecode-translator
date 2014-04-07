@@ -36,3 +36,5 @@ endif
 
 clean:
 	rm -f $(OBJS) $(BINFILE) $(STATIC_LIB)
+	rm -rf build
+
