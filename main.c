@@ -46,7 +46,7 @@ static int show_morse_code(const char *code, unsigned int len)
 
 void syntax()
 {
-    printf("sytax: [-v <morse code>] | -l\n");
+    printf("sytax: [-v <morse code>] | -l | -e <display char>\n");
 }
 
 int show_morse_code_with_check(const char *morse_buf, int morse_len, unsigned int current)
@@ -57,6 +57,20 @@ int show_morse_code_with_check(const char *morse_buf, int morse_len, unsigned in
     }
     return r;
 }
+
+static int lookup_morse_code_by_display_char(char display_char)
+{
+    const char *code = find_code_string(display_char);
+    if (code == NULL) {
+        printf("code '%c' is not found.\n", display_char);
+        return 1;
+    }
+    
+    printf("code '%c' is [%s]\n", display_char, code);
+    return 0;
+}
+
+
 #define MAX_MORSE_CODE_LEN 5
 int main(int argc, char **argv)
 {
@@ -76,6 +90,12 @@ int main(int argc, char **argv)
             case  'l':
                 show_morse_code_table();
                 return 0;
+            case 'e':
+                if (argc < 3) {
+                    syntax();
+                    return 1;
+                }
+                return lookup_morse_code_by_display_char(argv[2][0]);
             case 'v':
                 verbose++;
                 if (argc < 3) {

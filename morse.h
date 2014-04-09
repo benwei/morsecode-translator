@@ -24,7 +24,10 @@ struct token_element {
 };
 
 void show_morse_code_table(void);
+
 struct token_element *find_token(const char *input_code);
+
+const char *find_code_string(char display_char);
 
 int hex_to_char(const char *twobyte);
 

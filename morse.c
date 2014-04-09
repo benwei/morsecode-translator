@@ -79,6 +79,18 @@ struct token_element *find_token(const char *input_code)
     return NULL;
 }
 
+const char *find_code_string(char display_char)
+{
+    int i = 0;
+    for (i = 0; tokens[i].token != NULL; ++i)
+    {
+        if (tokens[i].display[0] == display_char) {
+            return tokens[i].token;
+        }
+    }
+    return NULL;
+}
+
 static inline int hexasc_to_digit(int x)
 {
     if (x >= '0' && x <= '9')
