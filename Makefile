@@ -4,7 +4,7 @@ AR=$(CROSS_COMPILE)ar
 LD=$(CROSS_COMPILE)ld
 
 CFLAGS= -Wall -std=c99 -O2
-CFILES=main.c morse.c
+CFILES=main.c
 OBJS=$(addprefix build/, $(CFILES:.c=.o))
 BINFILE=morse
 
@@ -25,7 +25,7 @@ armhf:
 build/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BINFILE): $(OBJS)
+$(BINFILE): $(OBJS) $(STATIC_LIB)
 	$(CC) -o $@ $^
 
 $(STATIC_LIB): $(STATIC_LIB_OBJS)
