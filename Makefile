@@ -1,5 +1,7 @@
 CROSS_COMPILE=
 CC=$(CROSS_COMPILE)gcc
+AR=$(CROSS_COMPILE)ar
+LD=$(CROSS_COMPILE)ld
 
 CFLAGS= -Wall -std=c99 -O2
 CFILES=main.c morse.c
